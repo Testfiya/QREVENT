@@ -1,0 +1,30 @@
+# Allow a specific file in certs
+!/certs/comms.txt
+
+# Ignore node modules
+node_modules/
+
+# Ignore all directories starting with '2025'
+2025*/
+
+# Ignore VSCode settings
+.vscode/
+
+# Ignore QR code directory and specific image files
+qr_codes/
+qrcode.png
+/logo.jpg
+
+# Ignore the certs directory except comms.txt
+/certs
+!/certs/comms.txt
+
+# Ignore all JSON files except package.json
+package-lock.json
+!package.json
+
+# Ignore all files in entries directory
+/entries/*
+
+# Ignore MacOS files
+.DS_Store

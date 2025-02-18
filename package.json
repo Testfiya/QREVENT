@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "convert-csv-to-json": "^2.50.0",
+    "csv-parser": "^3.1.0",
+    "csv-writer": "^1.6.0",
+    "easyqrcodejs-nodejs": "^4.5.2",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2"
+  }
+}
