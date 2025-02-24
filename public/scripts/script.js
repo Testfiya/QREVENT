@@ -18,7 +18,7 @@ domReady(async function () {
     async function processQRCode(decodedText) {
         try {
             if (mainCSV.length === 0) {
-                printStatus("Failed to load CSV data");
+                printStatus("Failed to load CSV data", "#ff0000");
                 return;
             }
             const values = decodedText.split("-").map(v => v.trim());
@@ -32,10 +32,10 @@ domReady(async function () {
             if (matchingObjects.length > 0) {
                 await sendToServer(matchingObjects);
             } else {
-                printStatus("No match found in the Database.");
+                printStatus("No match found in the Database.", "#ff0000");
             }
         } catch (error) {
-            printStatus("Error processing QR code");
+            printStatus("Error processing QR code", "#ff0000");
         }
     }
 
@@ -49,9 +49,13 @@ domReady(async function () {
                 body: JSON.stringify(matchedObject[0])
             });
             const result = await response.text();
-            printStatus(result);
+            if (result == "Entry stored successfully") {
+                printStatus(result, "#00ff00");
+            } else {
+                printStatus(result, "#ff0000");
+            }
         } catch (error) {
-            printStatus("Failed to store entry");
+            printStatus("Failed to store entry", "#ff0000");
         }
     }
 
@@ -66,12 +70,13 @@ domReady(async function () {
             const result = await response.json();
             return result
         } catch (error) {
-            printStatus("Failed to store entry");
+            printStatus("Failed to store entry", "#ff0000");
         }
     }
 
-    function printStatus(message) {
+    function printStatus(message, color) {
         document.getElementById("status").innerHTML = message;
+        document.getElementById("status").style.color = color;
     }
 
     htmlscanner.render(onScanSuccess);
